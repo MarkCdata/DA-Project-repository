@@ -95,7 +95,7 @@ fr_es_movies.isnull().sum()
 
 
 # In[ ]:
-
+print(fr_es_movies)
 
 
 
