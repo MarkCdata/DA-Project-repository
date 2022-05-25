@@ -14,13 +14,13 @@ movies.head()
 movies.shape
 
 
-# In[35]:
+# In[64]:
 
 
 movies.info()
 
 
-# In[36]:
+# In[65]:
 
 
 movies.drop("backdrop_path", inplace=True, axis=1)
@@ -30,102 +30,102 @@ movies.drop("overview", inplace=True, axis=1)
 movies.drop("poster_path", inplace=True, axis=1)
 
 
-# In[37]:
+# In[66]:
 
 
 movies.info()
 
 
-# In[53]:
+# In[67]:
 
 
 movies_budgeted = movies[(movies['budget'] != 0) & (movies['revenue'] != 0)]
 movies_budgeted.head(26)
 
 
-# In[54]:
+# In[68]:
 
 
 english_movies = movies_budgeted[movies_budgeted["original_language"].str.contains("en")==True]
 english_movies.head(26)
 
 
-# In[55]:
+# In[69]:
 
 
 fr_es_movies = movies_budgeted[movies_budgeted["original_language"].str.contains("fr","es")==True]
 fr_es_movies.head(26)
 
 
-# In[57]:
+# In[70]:
 
 
 # movies database tidied into budgeted database which was used to create english_movies & fr_es_movies database
 
 
-# In[58]:
+# In[71]:
 
 
 fr_es_movies.drop_duplicates(subset=['id'])
 
 
-# In[59]:
+# In[72]:
 
 
 english_movies.drop_duplicates(subset=['id'])
 
 
-# In[61]:
+# In[73]:
 
 
 english_movies.info()
 
 
-# In[62]:
+# In[74]:
 
 
 english_movies.isnull().sum()
 
 
-# In[63]:
+# In[75]:
 
 
 fr_es_movies.isnull().sum()
 
 
-# In[64]:
+# In[76]:
 
 
 eng_movies = english_movies.dropna(subset=['release_date', 'runtime'])
 
 
-# In[65]:
+# In[77]:
 
 
 eng_movies.isnull().sum()
 
 
-# In[66]:
+# In[78]:
 
 
 plt.scatter(eng_movies['budget'], eng_movies['revenue'], s=2)
 plt.show()
 
 
-# In[68]:
+# In[79]:
 
 
 plt.scatter(eng_movies['revenue'], eng_movies['release_date'], s=2)
 plt.show()
 
 
-# In[77]:
+# In[80]:
 
 
 sns.scatterplot(x='release_date',y='runtime', data=eng_movies, hue='revenue', size='popularity')
 
 
-# In[74]:
+# In[81]:
 
 
 
@@ -133,16 +133,40 @@ eng_movies.loc[6]
 eng_movies.info()
 
 
-# In[76]:
+# In[82]:
 
 
 sns.scatterplot(x='release_date',y='runtime', data=eng_movies, hue='popularity', size='revenue')
 
 
-# In[82]:
+# In[83]:
 
 
 eng_movies.head(25)
+
+
+# In[84]:
+
+
+eng_movies.info()
+
+
+# In[85]:
+
+
+movies.info()
+
+
+# In[86]:
+
+
+pd.to_datetime(movies['release_date'], dayfirst=True)
+
+
+# In[63]:
+
+
+
 
 
 # In[ ]:
