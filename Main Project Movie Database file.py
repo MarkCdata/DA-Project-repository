@@ -17,7 +17,6 @@ movies.shape
 # In[35]:
 
 
-
 movies.info()
 
 
@@ -94,8 +93,60 @@ english_movies.isnull().sum()
 fr_es_movies.isnull().sum()
 
 
+# In[64]:
+
+
+eng_movies = english_movies.dropna(subset=['release_date', 'runtime'])
+
+
+# In[65]:
+
+
+eng_movies.isnull().sum()
+
+
+# In[66]:
+
+
+plt.scatter(eng_movies['budget'], eng_movies['revenue'], s=2)
+plt.show()
+
+
+# In[68]:
+
+
+plt.scatter(eng_movies['revenue'], eng_movies['release_date'], s=2)
+plt.show()
+
+
+# In[77]:
+
+
+sns.scatterplot(x='release_date',y='runtime', data=eng_movies, hue='revenue', size='popularity')
+
+
+# In[74]:
+
+
+
+eng_movies.loc[6]
+eng_movies.info()
+
+
+# In[76]:
+
+
+sns.scatterplot(x='release_date',y='runtime', data=eng_movies, hue='popularity', size='revenue')
+
+
+# In[82]:
+
+
+eng_movies.head(25)
+
+
 # In[ ]:
-print(fr_es_movies)
+
 
 
 
