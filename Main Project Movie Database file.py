@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[34]:
+# In[3]:
 
 
 import matplotlib.pyplot as plt
@@ -14,13 +14,13 @@ movies.head()
 movies.shape
 
 
-# In[64]:
+# In[4]:
 
 
 movies.info()
 
 
-# In[65]:
+# In[5]:
 
 
 movies.drop("backdrop_path", inplace=True, axis=1)
@@ -30,102 +30,102 @@ movies.drop("overview", inplace=True, axis=1)
 movies.drop("poster_path", inplace=True, axis=1)
 
 
-# In[66]:
+# In[6]:
 
 
 movies.info()
 
 
-# In[67]:
+# In[7]:
 
 
 movies_budgeted = movies[(movies['budget'] != 0) & (movies['revenue'] != 0)]
 movies_budgeted.head(26)
 
 
-# In[68]:
+# In[8]:
 
 
 english_movies = movies_budgeted[movies_budgeted["original_language"].str.contains("en")==True]
 english_movies.head(26)
 
 
-# In[69]:
+# In[ ]:
 
 
 fr_es_movies = movies_budgeted[movies_budgeted["original_language"].str.contains("fr","es")==True]
-fr_es_movies.head(26)
+fr_es_movies.head(5)
 
 
-# In[70]:
+# In[10]:
 
 
 # movies database tidied into budgeted database which was used to create english_movies & fr_es_movies database
 
 
-# In[71]:
+# In[11]:
 
 
 fr_es_movies.drop_duplicates(subset=['id'])
 
 
-# In[72]:
+# In[12]:
 
 
 english_movies.drop_duplicates(subset=['id'])
 
 
-# In[73]:
+# In[13]:
 
 
 english_movies.info()
 
 
-# In[74]:
+# In[14]:
 
 
 english_movies.isnull().sum()
 
 
-# In[75]:
+# In[15]:
 
 
 fr_es_movies.isnull().sum()
 
 
-# In[76]:
+# In[16]:
 
 
 eng_movies = english_movies.dropna(subset=['release_date', 'runtime'])
 
 
-# In[77]:
+# In[17]:
 
 
 eng_movies.isnull().sum()
 
 
-# In[78]:
+# In[18]:
 
 
 plt.scatter(eng_movies['budget'], eng_movies['revenue'], s=2)
 plt.show()
 
 
-# In[79]:
+# In[19]:
 
 
 plt.scatter(eng_movies['revenue'], eng_movies['release_date'], s=2)
 plt.show()
 
 
-# In[80]:
+# In[20]:
 
 
 sns.scatterplot(x='release_date',y='runtime', data=eng_movies, hue='revenue', size='popularity')
 
 
-# In[81]:
+# In[21]:
 
 
 
@@ -133,37 +133,37 @@ eng_movies.loc[6]
 eng_movies.info()
 
 
-# In[82]:
+# In[22]:
 
 
 sns.scatterplot(x='release_date',y='runtime', data=eng_movies, hue='popularity', size='revenue')
 
 
-# In[83]:
+# In[23]:
 
 
 eng_movies.head(25)
 
 
-# In[84]:
+# In[24]:
 
 
 eng_movies.info()
 
 
-# In[85]:
+# In[25]:
 
 
 movies.info()
 
 
-# In[86]:
+# In[26]:
 
 
-pd.to_datetime(movies['release_date'], dayfirst=True)
+movies.to_datetime(movies['release_date'], dayfirst=False)
 
 
-# In[63]:
+# In[ ]:
 
 
 
